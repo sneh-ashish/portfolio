@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What if Earth Stopped Spinning? — Stickman Animated Explainer (9:16)</title>
+<style>
+  :root {
+    --bg-dark: #0a0c14;
+    --card-bg: #141724;
+    --accent: #ffb703;
+    --accent-red: #e63946;
+    --accent-cyan: #00f2fe;
+    --text-main: #f8f9fa;
+    --text-muted: #9aa0a6;
+    --border: rgba(255, 255, 255, 0.1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  body {
+    background: radial-gradient(circle at 50% 20%, #171b30, var(--bg-dark));
+    color: var(--text-main);
+    min-height: 100vh;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  header {
+    text-align: center;
+    max-width: 900px;
+    margin-bottom: 25px;
+  }
+  header h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, #ffb703, #fb8500, #ff477e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+  header p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+  }
+  .badge-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 12px;
+  }
+  .badge {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--accent-cyan);
+  }
+  .container {
+    display: flex;
+    gap: 35px;
+    max-width: 1200px;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  /* Phone Mockup Frame */
+  .phone-wrapper {
+    position: relative;
+    width: 380px;
+    height: 720px;
+    background: #000;
+    border-radius: 46px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.8), 0 0 0 10px #1e2235, 0 0 0 12px rgba(255,255,255,0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .phone-notch {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 110px;
+    height: 22px;
+    background: #111;
+    border-radius: 20px;
+    z-index: 10;
+  }
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: #000;
+  }
+  /* Info Panel & Scene Timeline */
+  .info-panel {
+    flex: 1;
+    min-width: 320px;
+    max-width: 650px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  }
+  .section-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .scene-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .scene-card:hover {
+    background: rgba(255,255,255,0.08);
+    transform: translateX(4px);
+    border-color: var(--accent-cyan);
+  }
+  .scene-card.active {
+    background: rgba(0, 242, 254, 0.12);
+    border-color: var(--accent-cyan);
+  }
+  .time-tag {
+    background: #232942;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 4px 8px;
+    border-radius: 6px;
+    min-width: 68px;
+    text-align: center;
+  }
+  .scene-info {
+    flex: 1;
+  }
+  .scene-info .vo {
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: #fff;
+    margin-bottom: 2px;
+  }
+  .scene-info .desc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+  .action-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    flex: 1;
+    min-width: 140px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #fb8500, #ffb703);
+    color: #000;
+    font-weight: 700;
+    padding: 12px 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .btn:hover { opacity: 0.9; }
+  .btn-secondary {
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover {
+    background: rgba(255,255,255,0.15);
+  }
+  .stills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .stills-grid img {
+    width: 100%;
+    aspect-ratio: 9/16;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s;
+  }
+  .stills-grid img:hover {
+    transform: scale(1.04);
+    border-color: var(--accent);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>What if Earth Stopped Spinning?</h1>
+  <p>30-Second Cinematic Stickman Science Explainer • 9:16 Vertical HD (1080x1920)</p>
+  <div class="badge-row">
+    <span class="badge">9:16 Vertical</span>
+    <span class="badge">30 Seconds</span>
+    <span class="badge">H.264 / AAC Stereo</span>
+    <span class="badge">Full Voiceover & SFX</span>
+  </div>
+</header>
+
+<div class="container">
+  <!-- Mobile Device View -->
+  <div class="phone-wrapper">
+    <div class="phone-notch"></div>
+    <video id="videoPlayer" controls autoplay loop playsinline>
+      <source src="what_if_earth_stopped_spinning.mp4" type="video/mp4">
+      Your browser does not support HTML5 video.
+    </video>
+  </div>
+
+  <!-- Interactive Controls & Script Timeline -->
+  <div class="info-panel">
+    <div class="section-title">⏱️ Jump to Script Timeline</div>
+    <div class="timeline" id="timeline">
+      <div class="scene-card active" onclick="seekTo(0)">
+        <span class="time-tag">00–04s</span>
+        <div class="scene-info">
+          <div class="vo">“What if Earth stopped spinning… for just three seconds?”</div>
+          <div class="desc">Space view, stickman astronaut, Earth screech-freezes mid-spin, “3 SECONDS” title.</div>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="seekTo(4)">
+        <span class="time-tag">04–09s</span>
+        <div class="scene-info">
+          <div class="vo">“The planet would stop. But everything on it would keep moving.”</div>
+          <div class="desc">City street, stickman clings to pole horizontally, dog & coffee fly, car skids!</div>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="seekTo(9)">
+        <span class="time-tag">09–15s</span>
+        <div class="scene-info">
+          <div class="vo">“At the equator, the ground moves at about 1,000 mph.”</div>
+          <div class="desc">Speedometer HUD pins to 1,040 MPH, palm trees bend 90°, roofs peel off, supersonic winds!</div>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="seekTo(15)">
+        <span class="time-tag">15–21s</span>
+        <div class="scene-info">
+          <div class="vo">“Oceans would surge across coastlines, reshaping the world in moments.”</div>
+          <div class="desc">Gargantuan mega-tsunami wall towers up, stickman jaw-drop terror, massive coastal surge.</div>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="seekTo(21)">
+        <span class="time-tag">21–26s</span>
+        <div class="scene-info">
+          <div class="vo">“Then Earth starts spinning again—and the chaos gets even worse.”</div>
+          <div class="desc">Torque burst, cosmic flash, cyclonic swirls, reverse inertia split-screen chaos.</div>
+        </div>
+      </div>
+
+      <div class="scene-card" onclick="seekTo(26)">
+        <span class="time-tag">26–30s</span>
+        <div class="scene-info">
+          <div class="vo">“Would you survive those three seconds? Follow for more what-ifs.”</div>
+          <div class="desc">Lone stickman silhouette on stormy rubble, cape fluttering, “WOULD YOU SURVIVE?”</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-row">
+      <a class="btn" href="what_if_earth_stopped_spinning.mp4" download="what_if_earth_stopped_spinning.mp4">
+        ⬇️ Download Video (MP4)
+      </a>
+      <button class="btn btn-secondary" onclick="togglePlay()">
+        ⏯️ Play / Pause
+      </button>
+    </div>
+
+    <div class="section-title" style="margin-top: 10px;">📸 Scene Snapshots (Keyframes)</div>
+    <div class="stills-grid">
+      <img src="scene_previews/scene1_3seconds.png" alt="Scene 1" onclick="seekTo(0)" title="Scene 1: 3 Seconds Freeze">
+      <img src="scene_previews/scene2_inertia.png" alt="Scene 2" onclick="seekTo(4)" title="Scene 2: Inertia Launch">
+      <img src="scene_previews/scene3_equator_winds.png" alt="Scene 3" onclick="seekTo(9)" title="Scene 3: 1,000 MPH Winds">
+      <img src="scene_previews/scene4_mega_tsunami.png" alt="Scene 4" onclick="seekTo(15)" title="Scene 4: Mega-Tsunami">
+      <img src="scene_previews/scene5_spin_resumes.png" alt="Scene 5" onclick="seekTo(21)" title="Scene 5: Reverse Torque">
+      <img src="scene_previews/scene6_survive.png" alt="Scene 6" onclick="seekTo(26)" title="Scene 6: Would You Survive?">
+    </div>
+  </div>
+</div>
+
+<script>
+  const video = document.getElementById('videoPlayer');
+  const cards = document.querySelectorAll('.scene-card');
+
+  function seekTo(sec) {
+    video.currentTime = sec;
+    video.play();
+  }
+
+  function togglePlay() {
+    if (video.paused) video.play();
+    else video.pause();
+  }
+
+  video.addEventListener('timeupdate', () => {
+    const t = video.currentTime;
+    let activeIdx = 0;
+    if (t >= 26) activeIdx = 5;
+    else if (t >= 21) activeIdx = 4;
+    else if (t >= 15) activeIdx = 3;
+    else if (t >= 9) activeIdx = 2;
+    else if (t >= 4) activeIdx = 1;
+
+    cards.forEach((card, idx) => {
+      if (idx === activeIdx) card.classList.add('active');
+      else card.classList.remove('active');
+    });
+  });
+</script>
+
+</body>
+</html>
